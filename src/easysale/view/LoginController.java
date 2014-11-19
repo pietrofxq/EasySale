@@ -27,17 +27,16 @@ public class LoginController {
 		
 		if (usuario.equalsIgnoreCase("admin") && senha.equalsIgnoreCase("admin")) {
 			// TODO: Ir para stage principal
-			Dialogs.create()
-            .title("Logado")
-            .masthead(null)
-            .message("Você logou com sucesso!")
-            .showInformation();
-		} else {
+			
 			Dialogs.create()
 	        .title("Erro")
 	        .masthead(null)
 	        .message("Usuário ou senha inválidos!")
 	        .showError();
+		} else {
+			mainApp.initSessionFactory();
+			mainApp.showHome();
+			
 		}
 	}
 	

@@ -6,19 +6,23 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane prefHeight="600.0" prefWidth="800.0" styleClass="login-panel" stylesheets="@../main/application.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" styleClass="login-panel" stylesheets="@../main/application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="easysale.view.HomeController">
    <children>
       <Text layoutX="26.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="EasySale" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
          <font>
             <Font name="Segoe UI" size="50.0" />
          </font>
       </Text>
-      <TableView layoutX="28.0" layoutY="126.0" prefHeight="398.0" prefWidth="745.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
+      <TableView fx:id="tableProdutos" layoutX="28.0" layoutY="126.0" prefHeight="398.0" prefWidth="745.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
         <columns>
-          <TableColumn prefWidth="75.0" text="C1" />
-          <TableColumn prefWidth="75.0" text="C2" />
+            <TableColumn fx:id="idProdutoColumn" editable="false" prefWidth="75.0" text="ID" />
+          <TableColumn fx:id="nomeProdutoColumn" editable="false" prefWidth="125.0" text="Nome do Produto" />
+          <TableColumn fx:id="descProdutoColumn" editable="false" minWidth="0.0" prefWidth="139.0" text="Descrição" />
+            <TableColumn fx:id="qntProdutoColumn" editable="false" prefWidth="163.0" text="Quantidade em Estoque" />
         </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
       </TableView>
       <Button layoutX="267.0" layoutY="533.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="114.0" text="Vender Produto" />
       <Button layoutX="14.0" layoutY="533.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="114.0" text="Adicionar Produto" />

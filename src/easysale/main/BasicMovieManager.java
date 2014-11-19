@@ -38,6 +38,7 @@ public class BasicMovieManager {
 			session.save(movie);
 			System.out.println("Movie inserted");
 			session.getTransaction().commit();
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
