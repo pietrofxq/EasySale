@@ -18,6 +18,5 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/Pietro/Documents/java-faculdade/AddressApp/lib/controlsfx-8.0.6_20.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
