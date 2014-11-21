@@ -8,5 +8,6 @@
 		<property name="nome" column="NOME"/>
 		<property name="descricao" column="DESCRICAO"/>
 		<property name="quantidade" column="QUANTIDADE"/>
+		<property name="codigo" column="CODIGO" />
 	</class>
 </hibernate-mapping>

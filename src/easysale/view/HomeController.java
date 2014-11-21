@@ -17,6 +17,7 @@ public class HomeController {
 	private MainApp mainApp;
 	private static ObservableList<Produto> listaProdutos = FXCollections.observableArrayList();
 	private SessionFactory sessionFactory = null;
+	private ProdutoController produtoController = null;
 	
 	@FXML
 	private TableView<Produto> tableProdutos;
@@ -33,6 +34,12 @@ public class HomeController {
 	@FXML
 	private TableColumn<Produto, Number> qntProdutoColumn;
 	
+	@FXML
+	private Button btDelete;
+	
+	@FXML
+	private Button btEdit;
+	
 	public HomeController() {
 		
 	}
@@ -44,6 +51,10 @@ public class HomeController {
 		nomeProdutoColumn.setCellValueFactory(cellData -> cellData.getValue().nomeProperty());
 		qntProdutoColumn.setCellValueFactory(cellData -> cellData.getValue().quantidadeProperty());
 		
+		tableProdutos.getSelectionModel().selectedItemProperty().addListener(
+				(observable, oldValue, newValue) -> handleProdutoClicado(newValue)
+				);
+		
 	}
 	
 	
@@ -53,10 +64,12 @@ public class HomeController {
 	
 	public void setSessionFactory(SessionFactory session) {
 		this.sessionFactory = session;
+		this.produtoController = new ProdutoController(sessionFactory);
+		
 	}
 	
 	public void addItens() {
-		ProdutoController produtoController = new ProdutoController(sessionFactory);
+		
 		List<Produto> produtos = produtoController.findAll();
 		
 		for (Produto produto : produtos) {
@@ -65,6 +78,47 @@ public class HomeController {
 		}
 		
 		tableProdutos.setItems(listaProdutos);
+	}
+	
+	@FXML
+	
+	public void handleNewProduct() {
+		Produto temp = new Produto();
+		boolean okClicked = mainApp.showNewProductDialog(temp, "Adicionar Produto");
+		
+		if (okClicked) {
+			produtoController.persist(temp);
+			listaProdutos.add(temp);
+		}
+	}
+	
+	@FXML
+	public void handleEditProduct() {
+		Produto produto = tableProdutos.getSelectionModel().getSelectedItem();
+		boolean okClicked = mainApp.showNewProductDialog(produto, "Editar Produto");
+		
+		if (okClicked) {
+			produtoController.persist(produto);
+			
+		}
+	}
+	
+	private void handleProdutoClicado(Produto produto) {
+		if (produto == null) {
+			btDelete.setDisable(true);
+			btEdit.setDisable(true);
+		} else {
+			btDelete.setDisable(false);
+			btEdit.setDisable(false);
+		}
+	}
+	
+	@FXML
+	private void handleDeleteProduct() {
+		Produto produto = tableProdutos.getSelectionModel().getSelectedItem();
+		listaProdutos.remove(produto);
+		produtoController.delete(produto);
+		
 	}
 	
 	

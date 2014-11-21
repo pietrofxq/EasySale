@@ -9,12 +9,11 @@ public class Produto {
 	private final StringProperty nome = new SimpleStringProperty();
 	private final StringProperty descricao = new SimpleStringProperty();
 	private final IntegerProperty quantidade = new SimpleIntegerProperty();
+	private final IntegerProperty codigo = new SimpleIntegerProperty();
 	
 	public Produto() {
 		
 	}
-	
-	
 	
 
 	public int getId() {
@@ -63,6 +62,18 @@ public class Produto {
 
 	public void setQuantidade(int value) {
 		quantidade.set(value);
+	}
+	
+	public int getCodigo() {
+		return codigo.get();
+	}
+	
+	public void setCodigo(int value) {
+		codigo.set(value);
+	}
+	
+	public IntegerProperty codigoProperty() {
+		return codigo;
 	}
 	
 	

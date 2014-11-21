@@ -1,7 +1,7 @@
 package easysale.main;
 
 import java.io.IOException;
-import java.util.*;
+
 
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
@@ -10,14 +10,13 @@ import org.hibernate.service.ServiceRegistry;
 
 import easysale.view.*;
 import easysale.model.*;
-import easysale.controller.*;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class MainApp extends Application {
@@ -83,6 +82,7 @@ public class MainApp extends Application {
 	
 	public void showHome() {
 		try {
+			
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(MainApp.class.getResource("../view/Home.fxml"));
 			AnchorPane homeScreen = (AnchorPane) loader.load();
@@ -90,6 +90,7 @@ public class MainApp extends Application {
 			
 			rootLayout.setCenter(homeScreen);
 	        HomeController controller = loader.getController();
+	        controller.setMainApp(this);
 	        controller.setSessionFactory(sessionFactory);
 	        controller.addItens();
 	        
@@ -99,10 +100,37 @@ public class MainApp extends Application {
 		}
 	}
 	
+
+	public boolean showNewProductDialog(Produto produto, String title) {
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(MainApp.class.getResource("../view/ProdutoDialog.fxml"));
+			AnchorPane page = (AnchorPane) loader.load();
+			
+			Stage dialogStage = new Stage();
+			dialogStage.setTitle("Editar");
+	        dialogStage.initModality(Modality.WINDOW_MODAL);
+	        dialogStage.initOwner(primaryStage);
+	        Scene scene = new Scene(page);
+	        dialogStage.setScene(scene);
+	        
+	        ProdutoDialogController controller = loader.getController();
+	        controller.setDialogStage(dialogStage);
+	        controller.setProduto(produto);
+	        controller.setTitle(title);
+	        dialogStage.showAndWait();
+	        
+	        return controller.isOkClicked();
+	        
+		} catch (IOException e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
 	public void initSessionFactory() {
 		try {
 			
-		
 			Configuration config = new Configuration().configure();
 			// Build a Registry with our configuration properties
 			ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings(

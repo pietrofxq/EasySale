@@ -24,8 +24,9 @@ public class ProdutoController {
 			
 			Session session = sessionFactory.getCurrentSession();
 			session.beginTransaction();
-			session.save(produto);
-			System.out.println("Produto inserido no bd");
+			System.out.println("ID do produto:" + produto.getId());
+			session.saveOrUpdate(produto);
+			System.out.println("Produto " + produto.getNome() + " inserido no bd");
 			session.getTransaction().commit();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -45,6 +46,19 @@ public class ProdutoController {
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
+		}
+	}
+	
+	public void delete(Produto produto) {
+		try {
+			
+			Session session = sessionFactory.getCurrentSession();
+			session.beginTransaction();
+			session.delete(produto);
+			System.out.println("Produto " + produto.getNome() + " deletado do bd");
+			session.getTransaction().commit();
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 
