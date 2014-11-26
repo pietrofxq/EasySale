@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" styleClass="login-panel" stylesheets="@../main/application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Text layoutX="26.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="EasySale" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
+         <font>
+            <Font name="Segoe UI" size="50.0" />
+         </font>
+      </Text>
+      <TableView layoutX="10.0" layoutY="146.0" prefHeight="398.0" prefWidth="370.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="420.0">
+        <columns>
+          <TableColumn prefWidth="75.0" text="Nome" />
+          <TableColumn prefWidth="75.0" text="Cpf" />
+        </columns>
+      </TableView>
+      <Button layoutX="267.0" layoutY="553.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="114.0" text="Editar Cliente" />
+      <Button layoutX="14.0" layoutY="553.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="114.0" text="Adicionar Cliente" />
+      <Button layoutX="139.0" layoutY="553.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="114.0" text="Deletar Cliente" />
+      <TextField layoutX="10.0" layoutY="107.0" prefHeight="30.0" prefWidth="200.0" promptText="Procurar" />
+      <TableView layoutX="425.0" layoutY="146.0" prefHeight="398.0" prefWidth="370.0" AnchorPane.rightAnchor="5.0">
+        <columns>
+          <TableColumn prefWidth="75.0" text="Produto" />
+          <TableColumn prefWidth="75.0" text="Preço" />
+            <TableColumn prefWidth="75.0" text="Quantidade" />
+        </columns>
+      </TableView>
+      <Text layoutX="425.0" layoutY="132.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Histórico de produtos comprados por cliente" />
+   </children>
+</AnchorPane>

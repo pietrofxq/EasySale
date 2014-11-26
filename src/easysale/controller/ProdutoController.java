@@ -15,10 +15,6 @@ public class ProdutoController {
 	public ProdutoController(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
-	
-	
-	
-	
 	public void persist(Produto produto) {
 		try {
 			
@@ -37,7 +33,6 @@ public class ProdutoController {
 		try {
 			Session session = sessionFactory.getCurrentSession();
 			session.beginTransaction();
-			
 			List<Produto> produtos = session.createQuery("from Produto").list();
 			session.getTransaction().commit();
 			

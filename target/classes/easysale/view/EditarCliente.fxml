@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="300.0" prefWidth="300.0" styleClass="login-panel" stylesheets="@../main/application.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
+   <children>
+      <Text layoutX="77.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Editar Cliente">
+         <font>
+            <Font name="Segoe UI" size="25.0" />
+         </font>
+      </Text>
+      <Label layoutX="27.0" layoutY="81.0" text="Nome">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="27.0" layoutY="121.0" text="Cpf">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <TextField layoutX="102.0" layoutY="81.0" />
+      <TextField layoutX="102.0" layoutY="121.0" />
+      <Button layoutX="22.0" layoutY="233.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="98.0" text="Cancelar" />
+      <Button layoutX="153.0" layoutY="233.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="98.0" text="Salvar" />
+   </children>
+</AnchorPane>
