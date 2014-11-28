@@ -11,7 +11,6 @@ import org.hibernate.service.ServiceRegistry;
 import easysale.view.*;
 import easysale.model.*;
 import javafx.application.Application;
-import javafx.collections.FXCollections;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
@@ -34,12 +33,10 @@ public class MainApp extends Application {
 		initRootLayout();
 		showLoginScreen();
 		
-		
 	}
 
 	public static void main(String[] args) {
 		launch(args);
-
 	}
 	
 	private void initRootLayout() {
@@ -90,9 +87,32 @@ public class MainApp extends Application {
 			
 			rootLayout.setCenter(homeScreen);
 	        HomeController controller = loader.getController();
+	        
+	        
 	        controller.setMainApp(this);
 	        controller.setSessionFactory(sessionFactory);
-	        controller.addItens();
+		    controller.addItens();
+	        
+	        
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
+	public void showClientes() {
+		try {
+			
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(MainApp.class.getResource("../view/Clientes.fxml"));
+			AnchorPane clienteScreen = (AnchorPane) loader.load();
+			primaryStage.setTitle("EasySale - Clientes");
+			
+			rootLayout.setCenter(clienteScreen);
+	        ClienteViewController controller = loader.getController();
+	        controller.setMainApp(this);
+	        controller.setSessionFactory(sessionFactory);
+	        controller.addClientes();
 	        
 	        
 		} catch (IOException e) {
@@ -127,6 +147,34 @@ public class MainApp extends Application {
 			return false;
 		}
 	}
+	
+	public boolean showClienteDialog(Cliente cliente, String title) {
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(MainApp.class.getResource("../view/ClienteDialog.fxml"));
+			AnchorPane page = (AnchorPane) loader.load();
+			
+			Stage dialogStage = new Stage();
+			dialogStage.setTitle(title);
+	        dialogStage.initModality(Modality.WINDOW_MODAL);
+	        dialogStage.initOwner(primaryStage);
+	        Scene scene = new Scene(page);
+	        dialogStage.setScene(scene);
+	        
+	        ClienteDialogController controller = loader.getController();
+	        controller.setDialogStage(dialogStage);
+	        controller.setCliente(cliente);
+	        controller.setTitle(title);
+	        dialogStage.showAndWait();
+	        
+	        return controller.isOkClicked();
+	        
+		} catch (IOException e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
 	
 	public void initSessionFactory() {
 		try {

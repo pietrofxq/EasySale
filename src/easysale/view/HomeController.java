@@ -1,5 +1,6 @@
 package easysale.view;
 
+import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -16,8 +17,8 @@ public class HomeController {
 	
 	private MainApp mainApp;
 	private static ObservableList<Produto> listaProdutos = FXCollections.observableArrayList();
-	private SessionFactory sessionFactory = null;
-	private ProdutoController produtoController = null;
+	private SessionFactory sessionFactory;
+	private ProdutoController produtoController;
 	
 	@FXML
 	private TableView<Produto> tableProdutos;
@@ -29,7 +30,7 @@ public class HomeController {
 	private TableColumn<Produto, String> nomeProdutoColumn;
 	
 	@FXML
-	private TableColumn<Produto, String> descProdutoColumn;
+	private TableColumn<Produto, Number> precoProdutoColumn;
 	
 	@FXML
 	private TableColumn<Produto, Number> qntProdutoColumn;
@@ -40,20 +41,49 @@ public class HomeController {
 	@FXML
 	private Button btEdit;
 	
+	@FXML
+	private Button btVenda;
+	
+	@FXML
+	private Label labelQntProdutos;
+	
+	@FXML
+	private TextField txPesquisa;
+	
+	
 	public HomeController() {
 		
 	}
 	
 	@FXML
 	private void initialize() {
-		idProdutoColumn.setCellValueFactory(cellData -> cellData.getValue().idProperty());
-		descProdutoColumn.setCellValueFactory(cellData -> cellData.getValue().descricaoProperty());
+		
+		idProdutoColumn.setCellValueFactory(cellData -> cellData.getValue().codigoProperty());
+		precoProdutoColumn.setCellValueFactory(cellData -> cellData.getValue().precoProperty());
+		
+		precoProdutoColumn.setCellFactory(col -> 
+				new TableCell<Produto, Number>() {
+					@Override
+					public void updateItem(Number preco, boolean vazio) {
+						super.updateItem(preco, vazio);
+						if (vazio) {
+							setText(null);
+						} else {
+							setText(String.format("R$ %.2f", preco.doubleValue()));
+						}
+					}
+			});
 		nomeProdutoColumn.setCellValueFactory(cellData -> cellData.getValue().nomeProperty());
 		qntProdutoColumn.setCellValueFactory(cellData -> cellData.getValue().quantidadeProperty());
+		
+		// Binda o label de quantidade de produtos com o tamanho do array listaProdutos
+		labelQntProdutos.textProperty().bind(Bindings.size(listaProdutos).asString());
 		
 		tableProdutos.getSelectionModel().selectedItemProperty().addListener(
 				(observable, oldValue, newValue) -> handleProdutoClicado(newValue)
 				);
+		
+		
 		
 	}
 	
@@ -71,18 +101,15 @@ public class HomeController {
 	public void addItens() {
 		
 		List<Produto> produtos = produtoController.findAll();
-		
-		for (Produto produto : produtos) {
-			listaProdutos.add(produto);
-			System.out.println(produto.getNome());
-		}
+		listaProdutos.clear();
+		listaProdutos.addAll(produtos);
 		
 		tableProdutos.setItems(listaProdutos);
+		
 	}
 	
 	@FXML
-	
-	public void handleNewProduct() {
+	private void handleNewProduct() {
 		Produto temp = new Produto();
 		boolean okClicked = mainApp.showNewProductDialog(temp, "Adicionar Produto");
 		
@@ -93,13 +120,34 @@ public class HomeController {
 	}
 	
 	@FXML
-	public void handleEditProduct() {
+	private void handleEditProduct() {
 		Produto produto = tableProdutos.getSelectionModel().getSelectedItem();
 		boolean okClicked = mainApp.showNewProductDialog(produto, "Editar Produto");
 		
 		if (okClicked) {
 			produtoController.persist(produto);
 			
+		}
+	}
+	
+	
+	private ObservableList<Produto> pesquisaProdutos() {
+		ObservableList<Produto> produtosEncontrados = FXCollections.observableArrayList();
+		for (Produto produto : listaProdutos) {
+			if (produto.getNome().toLowerCase().contains(txPesquisa.getText().toLowerCase())) {
+				produtosEncontrados.add(produto);
+			}
+		}
+		
+		return produtosEncontrados;
+	}
+	
+	@FXML
+	private void handlePesquisa() {
+		if (!txPesquisa.getText().equals("")) {
+			tableProdutos.setItems(pesquisaProdutos());
+		} else {
+			tableProdutos.setItems(listaProdutos);
 		}
 	}
 	
@@ -118,9 +166,12 @@ public class HomeController {
 		Produto produto = tableProdutos.getSelectionModel().getSelectedItem();
 		listaProdutos.remove(produto);
 		produtoController.delete(produto);
-		
 	}
 	
+	@FXML
+	private void handleVenda() {
+		
+	}
 	
 	
 	

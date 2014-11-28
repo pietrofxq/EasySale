@@ -6,29 +6,36 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" styleClass="login-panel" stylesheets="@../main/application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" styleClass="login-panel" stylesheets="@../main/application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="easysale.view.ClienteViewController">
    <children>
       <Text layoutX="26.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="EasySale" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
          <font>
             <Font name="Segoe UI" size="50.0" />
          </font>
       </Text>
-      <TableView layoutX="10.0" layoutY="146.0" prefHeight="398.0" prefWidth="370.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="420.0">
+      <TableView fx:id="tableClientes" layoutX="10.0" layoutY="146.0" prefHeight="382.0" prefWidth="370.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="420.0">
         <columns>
-          <TableColumn prefWidth="75.0" text="Nome" />
-          <TableColumn prefWidth="75.0" text="Cpf" />
+          <TableColumn fx:id="columnNomeCliente" prefWidth="75.0" text="Nome" />
+          <TableColumn fx:id="columnCpfCliente" prefWidth="75.0" text="Cpf" />
         </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
       </TableView>
-      <Button layoutX="267.0" layoutY="553.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="114.0" text="Editar Cliente" />
-      <Button layoutX="14.0" layoutY="553.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="114.0" text="Adicionar Cliente" />
-      <Button layoutX="139.0" layoutY="553.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="114.0" text="Deletar Cliente" />
-      <TextField layoutX="10.0" layoutY="107.0" prefHeight="30.0" prefWidth="200.0" promptText="Procurar" />
-      <TableView layoutX="425.0" layoutY="146.0" prefHeight="398.0" prefWidth="370.0" AnchorPane.rightAnchor="5.0">
+      <Button layoutX="267.0" layoutY="543.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="114.0" text="Editar Cliente" />
+      <Button layoutX="14.0" layoutY="543.0" mnemonicParsing="false" onAction="#handleNewCliente" prefHeight="30.0" prefWidth="114.0" text="Adicionar Cliente" />
+      <Button layoutX="139.0" layoutY="543.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="114.0" text="Deletar Cliente" />
+      <TextField fx:id="txPesquisa" layoutX="10.0" layoutY="107.0" prefHeight="30.0" prefWidth="200.0" promptText="Procurar" />
+      <TableView fx:id="tableHistorico" layoutX="425.0" layoutY="146.0" prefHeight="382.0" prefWidth="370.0" AnchorPane.rightAnchor="5.0">
         <columns>
-          <TableColumn prefWidth="75.0" text="Produto" />
-          <TableColumn prefWidth="75.0" text="Preço" />
-            <TableColumn prefWidth="75.0" text="Quantidade" />
+          <TableColumn fx:id="columnHistoricoNome" prefWidth="75.0" text="Produto" />
+          <TableColumn fx:id="columnHistoricoPreco" prefWidth="75.0" text="Preço" />
+            <TableColumn fx:id="columnHistoricoQnt" prefWidth="75.0" text="Quantidade" />
+            <TableColumn fx:id="columnHistoricoData" prefWidth="75.0" text="Data" />
         </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
       </TableView>
       <Text layoutX="425.0" layoutY="132.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Histórico de produtos comprados por cliente" />
    </children>

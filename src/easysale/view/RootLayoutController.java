@@ -17,6 +17,16 @@ public class RootLayoutController {
         this.mainApp = mainApp;
     }
     
+    @FXML
+    public void showHome() {
+    	mainApp.showHome();
+    }
+    
+    @FXML
+    public void showClientes() {
+    	mainApp.showClientes();
+    }
+    
     
     /**
      * Fecha a aplicação.

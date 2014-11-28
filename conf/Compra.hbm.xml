@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
 <hibernate-mapping>
-	<class name="easysale.model.Produto" table="PRODUTOS">
+	<class name="easysale.model.Compra" table="COMPRAS_LIST">
 		<id name="id" column="ID">
 			<generator class="native"/>
 		</id>
-		<property name="nome" column="NOME" type="string"/>
+		<property name="nomeProduto" column="NOME" type="string"/>
 		<property name="quantidade" column="QUANTIDADE" type="int"/>
-		<property name="codigo" column="CODIGO" type="int"/>
-		<property name="preco" column="PRECO" type="double" />
+		<property name="preco" column="PRECO" type="double"/>
+		<property name="dataCompra" column="DATA" />
 	</class>
 </hibernate-mapping>

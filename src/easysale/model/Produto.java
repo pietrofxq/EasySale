@@ -5,14 +5,21 @@ import javafx.beans.property.*;
 
 public class Produto {
 	
-	private final IntegerProperty id = new SimpleIntegerProperty();
-	private final StringProperty nome = new SimpleStringProperty();
-	private final StringProperty descricao = new SimpleStringProperty();
-	private final IntegerProperty quantidade = new SimpleIntegerProperty();
-	private final IntegerProperty codigo = new SimpleIntegerProperty();
+	private IntegerProperty id = new SimpleIntegerProperty();
+	private StringProperty nome = new SimpleStringProperty();
+	private IntegerProperty quantidade = new SimpleIntegerProperty();
+	private IntegerProperty codigo = new SimpleIntegerProperty();
+	private DoubleProperty preco = new SimpleDoubleProperty();
 	
 	public Produto() {
 		
+	}
+	
+	public Produto(String nome, int qnt, int cod, double preco) {
+		this.setNome(nome);
+		this.setQuantidade(qnt);
+		this.setCodigo(cod);
+		this.setPreco(preco);
 	}
 	
 
@@ -40,18 +47,6 @@ public class Produto {
 		nome.set(value);
 	}
 
-	public String getDescricao() {
-		return descricao.get();
-	}
-	
-	public StringProperty descricaoProperty() {
-		return descricao;
-	}
-
-	public void setDescricao(String value) {
-		descricao.set(value);
-	}
-
 	public int getQuantidade() {
 		return quantidade.get();
 	}
@@ -74,6 +69,19 @@ public class Produto {
 	
 	public IntegerProperty codigoProperty() {
 		return codigo;
+	}
+	
+	public void setPreco(double value) {
+		preco.set(value);
+	}
+
+
+	public double getPreco() {
+		return preco.get();
+	}
+	
+	public DoubleProperty precoProperty() {
+		return preco;
 	}
 	
 	
