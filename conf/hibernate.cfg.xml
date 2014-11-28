@@ -14,6 +14,7 @@
 			root
 		</property>
 		<property name="connection.password">
+			root
 		</property>
 		<property name="dialect">
 			org.hibernate.dialect.MySQL5Dialect
@@ -26,7 +27,6 @@
 		<mapping resource="Produto.hbm.xml" />
 		<mapping resource="Compra.hbm.xml" />	
 		<mapping resource="Cliente.hbm.xml" />
-		<mapping resource="Produto.hbm.xml" />	
 		<mapping resource="Funcionario.hbm.xml" />
 
     </session-factory>

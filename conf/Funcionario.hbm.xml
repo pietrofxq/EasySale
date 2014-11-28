@@ -6,7 +6,6 @@
 			<generator class="native"/>
 		</id>
 		<property name="nome" column="NOME"/>
-		<property name="senha" column="SENHA"/>
 		<property name="cpf" column="CPF"/>
 		<property name="pass" column="PASSWORD"/>
 	</class>
