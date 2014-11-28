@@ -7,7 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import easysale.main.*;
 import easysale.controller.*;
-import easysale.model.*;
+import easysale.model.*;	
 
 import java.util.*;
 

@@ -31,6 +31,7 @@ public class MainApp extends Application {
 		this.primaryStage = primaryStage;
 		this.primaryStage.setTitle("EasySale - Login");
 		initRootLayout();
+		initSessionFactory();
 		showLoginScreen();
 		
 	}
@@ -58,19 +59,15 @@ public class MainApp extends Application {
 			e.printStackTrace();
 		}
 	}
-	
-	
 	private void showLoginScreen() {
 		try {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(MainApp.class.getResource("../view/Login.fxml"));
 			AnchorPane loginScreen = (AnchorPane) loader.load();
-			
-			
 			rootLayout.setCenter(loginScreen);
-			
 			LoginController controller = loader.getController();
 	        controller.setMainApp(this);
+	        controller.setSessionFactory(sessionFactory);
 			
 		} catch (IOException e) {
 			e.printStackTrace();

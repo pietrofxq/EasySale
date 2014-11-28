@@ -1,23 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<<<<<<< HEAD
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
-<hibernate-mapping>
-	<class name="easysale.model.Funcionario" table="USUARIOS">
-=======
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 	<class name="easysale.model.Funcionario" table="FUNCIONARIOS">
->>>>>>> 693f875d1de445e6c8b574ef76b2fece3a51954a
 		<id name="id" column="ID">
 			<generator class="native"/>
 		</id>
 		<property name="nome" column="NOME"/>
-<<<<<<< HEAD
-		<property name="senha" column="SENHA"/>
-		
-=======
 		<property name="cpf" column="CPF"/>
 		<property name="pass" column="PASSWORD"/>
->>>>>>> 693f875d1de445e6c8b574ef76b2fece3a51954a
 	</class>
 </hibernate-mapping>
