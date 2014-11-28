@@ -17,7 +17,7 @@
         <columns>
             <TableColumn fx:id="idProdutoColumn" editable="false" prefWidth="75.0" text="Código" />
           <TableColumn fx:id="nomeProdutoColumn" editable="false" prefWidth="125.0" text="Nome do Produto" />
-          <TableColumn fx:id="descProdutoColumn" editable="false" minWidth="0.0" prefWidth="139.0" text="Descrição" />
+          <TableColumn fx:id="precoProdutoColumn" editable="false" minWidth="0.0" prefWidth="139.0" text="Preço" />
             <TableColumn fx:id="qntProdutoColumn" editable="false" prefWidth="163.0" text="Quantidade em Estoque" />
         </columns>
          <columnResizePolicy>
@@ -25,14 +25,14 @@
          </columnResizePolicy>
       </TableView>
       <Text layoutX="14.0" layoutY="112.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quantidade de Produtos:" />
-      <Label layoutX="150.0" layoutY="99.0" text="10" />
-      <TextField layoutX="590.0" layoutY="91.0" prefHeight="30.0" prefWidth="200.0" promptText="Procurar" />
-      <HBox layoutX="14.0" layoutY="524.0" prefHeight="100.0" prefWidth="733.0" spacing="20.0" AnchorPane.topAnchor="534.0">
+      <Label fx:id="labelQntProdutos" layoutX="150.0" layoutY="99.0" text="10" />
+      <TextField fx:id="txPesquisa" layoutX="590.0" layoutY="91.0" onKeyReleased="#handlePesquisa" prefHeight="30.0" prefWidth="200.0" promptText="Procurar" />
+      <HBox layoutX="14.0" layoutY="524.0" prefHeight="30.0" prefWidth="733.0" spacing="20.0" AnchorPane.topAnchor="534.0">
          <children>
             <Button mnemonicParsing="false" onAction="#handleNewProduct" prefHeight="30.0" prefWidth="114.0" text="Adicionar Produto" />
             <Button fx:id="btEdit" mnemonicParsing="false" onAction="#handleEditProduct" prefHeight="30.0" prefWidth="114.0" text="Editar Produto" />
             <Button fx:id="btDelete" mnemonicParsing="false" onAction="#handleDeleteProduct" prefHeight="30.0" prefWidth="114.0" text="Deletar Produto" />
-            <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="124.0" text="Vender Produto" />
+            <Button fx:id="btVenda" mnemonicParsing="false" onAction="#handleVenda" prefHeight="30.0" prefWidth="124.0" text="Vender Produto" />
          </children>
       </HBox>
    </children>

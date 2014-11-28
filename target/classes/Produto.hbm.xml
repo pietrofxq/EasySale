@@ -5,9 +5,9 @@
 		<id name="id" column="ID">
 			<generator class="native"/>
 		</id>
-		<property name="nome" column="NOME"/>
-		<property name="descricao" column="DESCRICAO"/>
-		<property name="quantidade" column="QUANTIDADE"/>
-		<property name="codigo" column="CODIGO" />
+		<property name="nome" column="NOME" type="string"/>
+		<property name="quantidade" column="QUANTIDADE" type="int"/>
+		<property name="codigo" column="CODIGO" type="int"/>
+		<property name="preco" column="PRECO" type="double" />
 	</class>
 </hibernate-mapping>

@@ -36,7 +36,7 @@ public class LoginController {
 			Query query = session.createQuery(select);
 			query.setString("usuario", usuario);
 			query.setString("pass", senha);
-			long count = (long)query.uniqueResult();
+			short count = (short)query.uniqueResult();
 			session.getTransaction().commit();
 			if(count == 1) 
 			{
