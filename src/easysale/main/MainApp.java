@@ -3,14 +3,25 @@ package easysale.main;
 import java.io.IOException;
 
 
+
+
+
+
+
+import org.controlsfx.dialog.Dialogs;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 
+
+
+
 import easysale.view.*;
 import easysale.model.*;
 import javafx.application.Application;
+import javafx.concurrent.Service;
+import javafx.concurrent.Task;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
@@ -31,8 +42,33 @@ public class MainApp extends Application {
 		this.primaryStage = primaryStage;
 		this.primaryStage.setTitle("EasySale - Login");
 		initRootLayout();
-		initSessionFactory();
-		showLoginScreen();
+		Service<Void> service = new Service<Void>() {
+		    @Override
+		    protected Task<Void> createTask() {
+		        return new Task<Void>() {
+		            @Override
+		            protected Void call() throws InterruptedException {
+		                updateProgress(-1, 1);
+		                initSessionFactory();
+		                
+		                return null;
+		            }
+		            @Override
+		            protected void succeeded() {
+		            	showLoginScreen();
+		            }
+		        };
+		    }
+		};
+
+		Dialogs.create()
+		        .owner(this.primaryStage)
+		        .title("Aguarde...")
+		        .masthead("Conectando ao banco de dados")
+		        .showWorkerProgress(service);
+		
+		service.start();
+		
 		
 	}
 
@@ -50,8 +86,9 @@ public class MainApp extends Application {
 			Scene scene = new Scene(rootLayout);
 			primaryStage.setScene(scene);
 			
-			// Dá ao controller o acesso ao main app.
+			
 	        RootLayoutController controller = loader.getController();
+	        // Dá ao controller o acesso ao main app.
 	        controller.setMainApp(this);
 	        
 			primaryStage.show();
@@ -162,11 +199,39 @@ public class MainApp extends Application {
 	        controller.setDialogStage(dialogStage);
 	        controller.setCliente(cliente);
 	        controller.setTitle(title);
+	        
 	        dialogStage.showAndWait();
 	        
 	        return controller.isOkClicked();
 	        
 		} catch (IOException e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
+	public boolean showVendaDialog(Produto produto) {
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(MainApp.class.getResource("../view/VendaDialog.fxml"));
+			AnchorPane page = (AnchorPane) loader.load();
+			
+			Stage dialogStage = new Stage();
+			dialogStage.setTitle("Vender Produto");
+	        dialogStage.initModality(Modality.WINDOW_MODAL);
+	        dialogStage.initOwner(primaryStage);
+	        Scene scene = new Scene(page);
+	        dialogStage.setScene(scene);
+	        
+	        VendaDialogController controller = loader.getController();
+	        controller.setDialogStage(dialogStage);
+	        controller.setSessionFactory(sessionFactory);
+	        controller.setProduto(produto);
+	        dialogStage.showAndWait();
+	        
+	        return controller.isOkClicked();
+	        
+		} catch (IOException | IllegalStateException e) {
 			e.printStackTrace();
 			return false;
 		}
@@ -182,6 +247,7 @@ public class MainApp extends Application {
 				config.getProperties()).build();
 			// create the session factory
 			sessionFactory = config.buildSessionFactory(serviceRegistry);
+			sessionFactory.openSession();
 			System.out.println("Session factory configured");
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -19,6 +19,7 @@ public class HomeController {
 	private static ObservableList<Produto> listaProdutos = FXCollections.observableArrayList();
 	private SessionFactory sessionFactory;
 	private ProdutoController produtoController;
+	private ClienteController clienteController;
 	
 	@FXML
 	private TableView<Produto> tableProdutos;
@@ -95,6 +96,7 @@ public class HomeController {
 	public void setSessionFactory(SessionFactory session) {
 		this.sessionFactory = session;
 		this.produtoController = new ProdutoController(sessionFactory);
+		this.clienteController = new ClienteController(sessionFactory);
 		
 	}
 	
@@ -126,6 +128,16 @@ public class HomeController {
 		
 		if (okClicked) {
 			produtoController.persist(produto);
+			
+		}
+	}
+	
+	@FXML
+	private void handleVendaProduto() {
+		Produto produto = tableProdutos.getSelectionModel().getSelectedItem();
+		boolean okClicked = mainApp.showVendaDialog(produto);
+		
+		if (okClicked) {
 			
 		}
 	}

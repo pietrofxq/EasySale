@@ -2,6 +2,8 @@ package easysale.controller;
 
 import java.util.List;
 
+import org.controlsfx.dialog.Dialogs;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
@@ -46,6 +48,28 @@ public class ClienteController {
 		} catch (Exception e) {
 			e.printStackTrace();
 			
+			return null;
+		}
+	}
+	
+	public Cliente findByCpf(String cpf) {
+		try {
+			Session session = sessionFactory.getCurrentSession();
+			session.beginTransaction();
+			String select = "from Cliente where cpf = :cpf";
+			Query query = session.createQuery(select);
+			query.setString("cpf", cpf);
+			query.setMaxResults(1);
+			Cliente cliente = (Cliente) query.uniqueResult();
+			if (cliente != null) {
+				session.getTransaction().commit();
+				return cliente;
+			} else {
+				return null;
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
 			return null;
 		}
 	}

@@ -32,7 +32,7 @@
             <Button mnemonicParsing="false" onAction="#handleNewProduct" prefHeight="30.0" prefWidth="114.0" text="Adicionar Produto" />
             <Button fx:id="btEdit" mnemonicParsing="false" onAction="#handleEditProduct" prefHeight="30.0" prefWidth="114.0" text="Editar Produto" />
             <Button fx:id="btDelete" mnemonicParsing="false" onAction="#handleDeleteProduct" prefHeight="30.0" prefWidth="114.0" text="Deletar Produto" />
-            <Button fx:id="btVenda" mnemonicParsing="false" onAction="#handleVenda" prefHeight="30.0" prefWidth="124.0" text="Vender Produto" />
+            <Button fx:id="btVenda" mnemonicParsing="false" onAction="#handleVendaProduto" prefHeight="30.0" prefWidth="124.0" text="Vender Produto" />
          </children>
       </HBox>
    </children>

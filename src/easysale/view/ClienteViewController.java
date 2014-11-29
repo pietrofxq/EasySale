@@ -90,8 +90,17 @@ public class ClienteViewController {
 		listaCompras.addAll(cliente.getCompras());
 	}
 	
+	public void addClientes() {
+		List<Cliente> clientes = clienteController.findAll();
+		
+		for (Cliente cliente : clientes) {
+			listaClientes.add(cliente);
+			System.out.println(cliente.getNome());
+		}
+	}
+	
 	@FXML
-	public void handleNewCliente() {
+	private void handleNewCliente() {
 		Cliente temp = new Cliente();
 		boolean okClicked = mainApp.showClienteDialog(temp, "Adicionar Cliente");
 		
@@ -102,13 +111,20 @@ public class ClienteViewController {
 		}
 	}
 	
-	public void addClientes() {
-		List<Cliente> clientes = clienteController.findAll();
-		
-		for (Cliente cliente : clientes) {
-			listaClientes.add(cliente);
-			System.out.println(cliente.getNome());
+	@FXML
+	private void handleEditCliente() {
+		Cliente cliente  = tableClientes.getSelectionModel().getSelectedItem();
+		boolean okClicked = mainApp.showClienteDialog(cliente, "Editar Cliente");
+		if (okClicked) {
+			clienteController.persist(cliente);
 		}
+	}
+	
+	@FXML
+	private void handleDeleteCliente() {
+		Cliente cliente  = tableClientes.getSelectionModel().getSelectedItem();
+		listaClientes.remove(cliente);
+		clienteController.delete(cliente);
 	}
 	
 

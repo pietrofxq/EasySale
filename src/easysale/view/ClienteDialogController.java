@@ -19,9 +19,11 @@ public class ClienteDialogController {
 	@FXML
 	private TextField txCpf;
 	
+	
+	
 	@FXML
 	public void initialize() {
-		
+	
 	}
 	
 	 public void setTitle(String title) {

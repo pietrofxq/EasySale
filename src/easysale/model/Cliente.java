@@ -11,7 +11,7 @@ public class Cliente {
 	private IntegerProperty id = new SimpleIntegerProperty();
 	private StringProperty nome = new SimpleStringProperty();
 	private StringProperty cpf = new SimpleStringProperty();
-	ObservableList<Compra> observableCompras = FXCollections.observableArrayList();
+	private ObservableList<Compra> observableCompras = FXCollections.observableArrayList();
 	private ListProperty<Compra> compras = new SimpleListProperty<Compra>(observableCompras);
 	
 	public Cliente() {
