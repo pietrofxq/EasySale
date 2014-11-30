@@ -55,7 +55,10 @@ public class Produto {
 		return quantidade;
 	}
 
-	public void setQuantidade(int value) {
+	public void setQuantidade(int value) throws IllegalArgumentException {
+		if (value < 0)
+			throw new IllegalArgumentException("Quantidade não pode ser negativa");
+		
 		quantidade.set(value);
 	}
 	

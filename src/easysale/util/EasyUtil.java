@@ -1,4 +1,7 @@
 package easysale.util;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.*;
 
 // Classe de métodos de utilidade estáticos
@@ -12,5 +15,12 @@ public abstract class EasyUtil {
 	    for(Object o: c)
 	      r.add(clazz.cast(o));
 	    return r;
+	}
+	
+
+	public static Date LocalDateTimeToDate(LocalDateTime now) {
+		Instant instant = now.atZone(ZoneId.systemDefault()).toInstant();
+		Date res = Date.from(instant);
+		return res;
 	}
 }

@@ -1,24 +1,27 @@
 package easysale.model;
 
 
+import java.time.Instant;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.Date;
+
 
 import javafx.beans.property.*;
 
 public class Compra {
 	
 	private IntegerProperty id = new SimpleIntegerProperty();
-	private Produto produto;
+	private Cliente cliente;
 	private IntegerProperty quantidade = new SimpleIntegerProperty();
 	private StringProperty nomeProduto = new SimpleStringProperty();
 	private DoubleProperty preco = new SimpleDoubleProperty();
-	private ObjectProperty<LocalDateTime> dataCompra;
+
+	private ObjectProperty<LocalDateTime> dataCompra = new SimpleObjectProperty<LocalDateTime>();
 	
 	public Compra() {
 		
 	}
-	
-	
 	
 	public int getId() {
 		return id.get();
@@ -64,23 +67,27 @@ public class Compra {
 		return preco;
 	}
 	
-	public LocalDateTime getDataCompra() {
-		return dataCompra.get();
+	public Date getDataCompra() {
+		Instant instant = dataCompra.get().atZone(ZoneId.systemDefault()).toInstant();
+		Date res = Date.from(instant);
+		return res;
 	}
 	
-	public void setDataCompra(LocalDateTime value) {
-		dataCompra.set(value);
+	public void setDataCompra(Date value) {
+		Instant instant = Instant.ofEpochMilli(value.getTime());
+		LocalDateTime res = LocalDateTime.ofInstant(instant, ZoneId.systemDefault());
+		dataCompra.set(res);
 	}
 	
 	public ObjectProperty<LocalDateTime> dataCompraProperty() {
 		return dataCompra;
 	}
 	
-	public Produto getProduto() {
-		return produto;
+	public Cliente getCliente() {
+		return cliente;
 	}
-	public void setProduto(Produto produto) {
-		this.produto = produto;
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
 	}
 	
 	

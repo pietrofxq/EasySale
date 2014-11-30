@@ -1,14 +1,13 @@
 package easysale.view;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 
 import org.controlsfx.dialog.Dialogs;
 import org.hibernate.SessionFactory;
 
 import easysale.controller.ClienteController;
 import easysale.model.*;
+import easysale.util.*;
 import javafx.scene.control.TextField;
 import javafx.stage.*;
 import javafx.fxml.*;
@@ -76,13 +75,21 @@ public class VendaDialogController {
     	}
     	String quantidade = txQnt.getText();
     	Compra compra = new Compra();
-    	compra.setProduto(produto);
+    	compra.setCliente(cliente);
     	compra.setNomeProduto(produto.getNome());
     	compra.setPreco(produto.getPreco());
     	compra.setQuantidade(Integer.valueOf(quantidade));
-    	compra.setDataCompra(LocalDateTime.now());
+    	compra.setDataCompra(EasyUtil.LocalDateTimeToDate(LocalDateTime.now()));
     	cliente.addCompra(compra);
-    	produto.setQuantidade(produto.getQuantidade() - Integer.valueOf(quantidade));
+    	try {
+    		produto.setQuantidade(produto.getQuantidade() - Integer.valueOf(quantidade));
+    	} catch (IllegalArgumentException e) {
+    		Dialogs.create()
+	        .title("Erro")
+	        .masthead(null)
+	        .message("Quantidade final não pode ser negativa.")
+	        .showError();
+    	}
     	clienteController.persist(cliente);
     	okClicked = true;
     	dialogStage.close();

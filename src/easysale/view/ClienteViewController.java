@@ -43,8 +43,11 @@ public class ClienteViewController {
 	public void initialize() {
 		configureCells();
 		
+		
 		tableClientes.setItems(listaClientes);
 		tableHistorico.setItems(listaCompras);
+		
+		initEvents();
 	}
 	
 	public void setMainApp(MainApp mainApp) {
@@ -86,17 +89,18 @@ public class ClienteViewController {
 	}
 	
 	public void showHistoricoCliente(Cliente cliente) {
-		listaCompras.clear();
-		listaCompras.addAll(cliente.getCompras());
+		if (cliente != null) {
+			listaCompras.clear();
+			listaCompras.addAll(cliente.getCompras());
+			System.out.println(cliente.getCompras());
+		}
+		
 	}
 	
 	public void addClientes() {
 		List<Cliente> clientes = clienteController.findAll();
-		
-		for (Cliente cliente : clientes) {
-			listaClientes.add(cliente);
-			System.out.println(cliente.getNome());
-		}
+		listaClientes.clear();
+		listaClientes.addAll(clientes);
 	}
 	
 	@FXML

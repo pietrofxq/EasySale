@@ -2,21 +2,11 @@ package easysale.main;
 
 import java.io.IOException;
 
-
-
-
-
-
-
 import org.controlsfx.dialog.Dialogs;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
-
-
-
-
 import easysale.view.*;
 import easysale.model.*;
 import javafx.application.Application;
@@ -34,7 +24,6 @@ public class MainApp extends Application {
 	private Stage primaryStage;
 	private BorderPane rootLayout;
 	private SessionFactory sessionFactory = null;
-	
 	
 	@Override
 	public void start(Stage primaryStage) {
@@ -71,6 +60,7 @@ public class MainApp extends Application {
 		
 		
 	}
+	
 
 	public static void main(String[] args) {
 		launch(args);

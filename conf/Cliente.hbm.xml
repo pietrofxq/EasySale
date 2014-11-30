@@ -1,16 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
-<hibernate-mapping>
-	<class name="easysale.model.Cliente" table="CLIENTES">
-		<id name="id" column="ID">
+<hibernate-mapping package="easysale.model">
+	<class name="Cliente" table="CLIENTES">
+		<id name="id" column="CLIENTE_ID">
 			<generator class="native"/>
 		</id>
 		<property name="nome" column="NOME" type="string"/>
 		<property name="cpf" column="CPF" type="string"/>
-		<list name="compras" cascade="all" table="COMPRAS_LIST">
-			<key column="CLIENTE_ID" />
-			<index column="COMPRAS_INDEX" />
-			<one-to-many class="easysale.model.Compra"/>
+		<list name="compras" cascade="all" lazy="true" inverse="false">
+			<key column="CLIENTE_ID" not-null="true"/>
+			<list-index column="COMPRAS_INDEX"/>
+			<one-to-many class="Compra"/>
 		</list>
+	</class>
+	
+	<class name="Compra" table="COMPRAS_LIST">
+		<id name="id" column="ID">
+			<generator class="native"/>
+		</id>
+		<property name="nomeProduto" column="NOME" type="string"/>
+		<property name="quantidade" column="QUANTIDADE" type="int"/>
+		<property name="preco" column="PRECO" type="double"/>
+		<property name="dataCompra" column="DATA" type="date"/>
+		<many-to-one name="cliente" class="Cliente" column="CLIENTE_ID" not-null="true" insert="false" update="false" />
 	</class>
 </hibernate-mapping>

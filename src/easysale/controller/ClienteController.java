@@ -1,8 +1,6 @@
 package easysale.controller;
 
 import java.util.List;
-
-import org.controlsfx.dialog.Dialogs;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -23,9 +21,9 @@ public class ClienteController {
 		try {
 			Session session = sessionFactory.getCurrentSession();
 			session.beginTransaction();
-			System.out.println("ID do cliente:" + cliente.getId());
 			session.saveOrUpdate(cliente);
-			System.out.println("Cliente " + cliente.getNome() + " inserido no bd");
+			System.out.println("ID do cliente:" + cliente.getId());
+			System.out.println("Cliente " + cliente.getNome() + " inserido/alterado no bd");
 			session.getTransaction().commit();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -37,9 +35,9 @@ public class ClienteController {
 			Session session = sessionFactory.getCurrentSession();
 			session.beginTransaction();
 			
-			List<Cliente> clientes = session.createQuery("from Cliente").list();
+			List<Cliente> clientes = EasyUtil.castList(Cliente.class, session.createQuery("from Cliente").list());
 			for (Cliente cliente : clientes) {
-				System.out.println(cliente.getNome());
+				System.out.println(cliente);
 			}
 			session.getTransaction().commit();
 			
