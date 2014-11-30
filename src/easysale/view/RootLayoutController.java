@@ -21,6 +21,10 @@ public class RootLayoutController {
     public void showHome() {
     	mainApp.showHome();
     }
+    @FXML
+    public void showFunc() {
+    	mainApp.showFunc();
+    }
     
     @FXML
     public void showClientes() {

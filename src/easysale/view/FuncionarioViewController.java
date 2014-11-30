@@ -9,14 +9,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-
 import easysale.controller.FuncionarioController;
 import easysale.main.MainApp;
 import easysale.model.Funcionario;
-import easysale.model.Produto;
+
 
 public class FuncionarioViewController {
 

@@ -105,7 +105,6 @@ public class HomeController {
 		List<Produto> produtos = produtoController.findAll();
 		listaProdutos.clear();
 		listaProdutos.addAll(produtos);
-		
 		tableProdutos.setItems(listaProdutos);
 		
 	}

@@ -22,6 +22,11 @@
                   <MenuItem mnemonicParsing="false" text="Cadastrar cliente" />
             </items>
           </Menu>
+            <Menu mnemonicParsing="false" text="Funcionários">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#showFunc" text="Ver Funcionários" />
+            </items>
+          </Menu>
           <Menu mnemonicParsing="false" text="Sobre">
             <items>
               <MenuItem mnemonicParsing="false" text="About" />
