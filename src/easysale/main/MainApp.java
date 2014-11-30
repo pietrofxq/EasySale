@@ -227,6 +227,48 @@ public class MainApp extends Application {
 		}
 	}
 	
+	public void showFunc() {
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(MainApp.class.getResource("../view/Funcionarios.fxml"));
+			AnchorPane funcScreen = (AnchorPane) loader.load();
+			primaryStage.setTitle("EasySale - Funcionários");
+			rootLayout.setCenter(funcScreen);
+			FuncionarioViewController controller = loader.getController();
+			controller.setMainApp(this);
+			controller.setSessionFactory(sessionFactory);
+			controller.addFunc();
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public boolean showNewFuncDialog(Funcionario func, String title) {
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(MainApp.class.getResource("../view/AddFuncionarioDialog.fxml"));
+			AnchorPane page = (AnchorPane) loader.load();
+			
+			Stage dialogStage = new Stage();
+			dialogStage.setTitle("Adicionar");
+			dialogStage.initModality(Modality.WINDOW_MODAL);
+			Scene scene = new Scene(page);
+			dialogStage.setScene(scene);
+			
+			FuncionarioDialogController controller = loader.getController();
+			controller.setDialogStage(dialogStage);
+			controller.setFuncionario(func);
+			controller.setTitle(title);
+			dialogStage.showAndWait();
+			
+			return controller.isOkClicked();
+			
+		} catch(IOException e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
 	
 	public void initSessionFactory() {
 		try {

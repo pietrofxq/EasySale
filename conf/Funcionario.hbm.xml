@@ -8,5 +8,6 @@
 		<property name="nome" column="NOME"/>
 		<property name="cpf" column="CPF"/>
 		<property name="pass" column="PASSWORD"/>
+		<property name="cargo" column="CARGO" />
 	</class>
 </hibernate-mapping>
