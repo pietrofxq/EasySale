@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="400.0" styleClass="login-panel" stylesheets="@../main/application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="easysale.view.FuncionarioDialogController">
+   <children>
+      <Text fx:id="txTitle" layoutX="80.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Adicionar Funcionário">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Text>
+      <Label layoutX="68.0" layoutY="116.0" text="Nome">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="68.0" layoutY="153.0" text="CPF">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="67.0" layoutY="187.0" text="Cargo">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="67.0" layoutY="223.0" text="Senha">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="nameField" layoutX="184.0" layoutY="117.0" />
+      <TextField fx:id="cpfField" layoutX="184.0" layoutY="153.0" />
+      <TextField fx:id="cargoField" layoutX="184.0" layoutY="188.0" />
+      <TextField fx:id="passField" layoutX="184.0" layoutY="224.0" />
+      <HBox layoutX="67.0" layoutY="320.0" spacing="138.0">
+         <children>
+            <Button layoutX="66.0" layoutY="310.0" mnemonicParsing="false" onAction="#handleSair" text="Cancelar" />
+            <Button layoutX="269.0" layoutY="310.0" mnemonicParsing="false" onAction="#handleOk" text="Cadastrar" />
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

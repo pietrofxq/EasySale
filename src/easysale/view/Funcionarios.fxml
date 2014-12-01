@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="login-panel" stylesheets="@../main/application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="easysale.view.FuncionarioViewController">
+   <children>
+      <Text layoutX="26.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="EasySale" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="20.0">
+         <font>
+            <Font name="Segoe UI" size="50.0" />
+         </font>
+      </Text>
+      <TableView fx:id="tableFunc" layoutX="7.0" layoutY="129.0" prefHeight="356.0" prefWidth="780.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
+        <columns>
+          <TableColumn fx:id="nomeColumn" prefWidth="223.0" text="Nome" />
+          <TableColumn fx:id="cpfColumn" prefWidth="292.0" text="CPF" />
+          <TableColumn fx:id="cargoColumn" prefWidth="264.0" text="Cargo" />
+        </columns>
+      </TableView>
+      <Button layoutX="10.0" layoutY="501.0" mnemonicParsing="false" onAction="#handleNewFunc" text="Adicionar Funcionário" />
+      <Button fx:id="editBtn" layoutX="154.0" layoutY="501.0" mnemonicParsing="false" onAction="#handleEditFunc" text="Editar Funcionário" />
+      <Button fx:id="deleteBtn" layoutX="279.0" layoutY="501.0" mnemonicParsing="false" onAction="#handleDeleteFunc" text="Remover Funcionário" />
+      <TextField fx:id="txPesquisa" layoutX="604.0" layoutY="89.0" prefHeight="34.0" prefWidth="186.0" promptText="Busca" />
+   </children>
+</AnchorPane>

@@ -1,45 +1,70 @@
 package easysale.model;
 
-public class Funcionario {
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
-	private String nome;
-	private String pass;
-	private int cpf;
-	private int id;
+public class Funcionario {
+	private final StringProperty nome = new SimpleStringProperty();
+	private final StringProperty pass = new SimpleStringProperty();
+	private final IntegerProperty cpf = new SimpleIntegerProperty();
+	private final IntegerProperty id = new SimpleIntegerProperty();
+	private final StringProperty cargo = new SimpleStringProperty();
 	
 	public Funcionario() {
 		
 	}
 
 	public String getNome() {
+		return nome.get();
+	}
+	public void setNome(String value) {
+		this.nome.setValue(value);
+	}
+	public StringProperty nomeProperty() {
 		return nome;
 	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
+	
 	public String getPass() {
+		return pass.get();
+	}
+	public void setPass(String value) {
+		this.pass.setValue(value);
+	}
+	public StringProperty passProperty() {
 		return pass;
 	}
-
-	public void setPass(String pass) {
-		this.pass = pass;
+	
+	public String getCargo() {
+		return cargo.get();
 	}
-
-	public int getCpf() {
-		return cpf;
+	public void setCargo(String value) {
+		this.cargo.set(value);
 	}
-
-	public void setCpf(int cpf) {
-		this.cpf = cpf;
+	public StringProperty cargoProperty() {
+		return cargo;
 	}
-
+	
 	public int getId() {
+		return id.get();
+	}
+	public void setId(int value) {
+		this.id.set(value);
+	}
+	public IntegerProperty idProperty() {
 		return id;
 	}
-
-	public void setId(int id) {
-		this.id = id;
+	
+	public int getCpf() {
+		return cpf.get();
 	}
+	public void setCpf(int value) {
+		this.cpf.set(value);
+	}
+	public IntegerProperty cpfProperty() {
+		return cpf;
+	}
+	
+
 }

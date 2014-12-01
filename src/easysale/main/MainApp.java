@@ -57,8 +57,6 @@ public class MainApp extends Application {
 		        .showWorkerProgress(service);
 		
 		service.start();
-		
-		
 	}
 	
 
@@ -200,6 +198,50 @@ public class MainApp extends Application {
 		}
 	}
 	
+	public void showFunc() {
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(MainApp.class.getResource("../view/Funcionarios.fxml"));
+			AnchorPane funcScreen = (AnchorPane) loader.load();
+			primaryStage.setTitle("EasySale - Funcionários");
+			rootLayout.setCenter(funcScreen);
+			FuncionarioViewController controller = loader.getController();
+			controller.setMainApp(this);
+			controller.setSessionFactory(sessionFactory);
+			controller.addFunc();
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public boolean showNewFuncDialog(Funcionario func, String title) {
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(MainApp.class.getResource("../view/AddFuncionarioDialog.fxml"));
+			AnchorPane page = (AnchorPane) loader.load();
+			
+			Stage dialogStage = new Stage();
+			dialogStage.setTitle(title);
+	        dialogStage.initModality(Modality.WINDOW_MODAL);
+	        dialogStage.initOwner(primaryStage);
+	        Scene scene = new Scene(page);
+	        dialogStage.setScene(scene);
+	        
+	        FuncionarioDialogController controller = loader.getController();
+	        controller.setDialogStage(dialogStage);
+	        controller.setFuncionario(func);
+	        dialogStage.showAndWait();
+	        
+	        return controller.isOkClicked();
+	        
+			
+		} catch(IOException e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
 	public boolean showVendaDialog(Produto produto) {
 		try {
 			FXMLLoader loader = new FXMLLoader();
@@ -207,7 +249,7 @@ public class MainApp extends Application {
 			AnchorPane page = (AnchorPane) loader.load();
 			
 			Stage dialogStage = new Stage();
-			dialogStage.setTitle("Vender Produto");
+			dialogStage.setTitle("Vender produto");
 	        dialogStage.initModality(Modality.WINDOW_MODAL);
 	        dialogStage.initOwner(primaryStage);
 	        Scene scene = new Scene(page);
@@ -215,18 +257,17 @@ public class MainApp extends Application {
 	        
 	        VendaDialogController controller = loader.getController();
 	        controller.setDialogStage(dialogStage);
-	        controller.setSessionFactory(sessionFactory);
 	        controller.setProduto(produto);
 	        dialogStage.showAndWait();
 	        
 	        return controller.isOkClicked();
 	        
-		} catch (IOException | IllegalStateException e) {
+			
+		} catch(IOException e) {
 			e.printStackTrace();
 			return false;
 		}
 	}
-	
 	
 	public void initSessionFactory() {
 		try {
