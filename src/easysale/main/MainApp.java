@@ -150,7 +150,7 @@ public class MainApp extends Application {
 			AnchorPane page = (AnchorPane) loader.load();
 			
 			Stage dialogStage = new Stage();
-			dialogStage.setTitle("Editar");
+			dialogStage.setTitle(title);
 	        dialogStage.initModality(Modality.WINDOW_MODAL);
 	        dialogStage.initOwner(primaryStage);
 	        Scene scene = new Scene(page);
@@ -229,6 +229,7 @@ public class MainApp extends Application {
 	        dialogStage.setScene(scene);
 	        
 	        FuncionarioDialogController controller = loader.getController();
+	        controller.setTitle(title);
 	        controller.setDialogStage(dialogStage);
 	        controller.setFuncionario(func);
 	        dialogStage.showAndWait();

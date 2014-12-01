@@ -20,9 +20,9 @@
           <TableColumn fx:id="cargoColumn" prefWidth="264.0" text="Cargo" />
         </columns>
       </TableView>
-      <Button layoutX="10.0" layoutY="501.0" mnemonicParsing="false" onAction="#handleNewFunc" text="Adicionar Funcionário" />
-      <Button fx:id="editBtn" layoutX="154.0" layoutY="501.0" mnemonicParsing="false" onAction="#handleEditFunc" text="Editar Funcionário" />
-      <Button fx:id="deleteBtn" layoutX="279.0" layoutY="501.0" mnemonicParsing="false" onAction="#handleDeleteFunc" text="Remover Funcionário" />
-      <TextField fx:id="txPesquisa" layoutX="604.0" layoutY="89.0" prefHeight="34.0" prefWidth="186.0" promptText="Busca" />
+      <Button layoutX="10.0" prefHeight="30" layoutY="501.0" mnemonicParsing="false" onAction="#handleNewFunc" text="Adicionar Funcionário" />
+      <Button fx:id="editBtn" prefHeight="30" layoutX="154.0" layoutY="501.0" mnemonicParsing="false" onAction="#handleEditFunc" text="Editar Funcionário" />
+      <Button fx:id="deleteBtn" prefHeight="30" layoutX="279.0" layoutY="501.0" mnemonicParsing="false" onAction="#handleDeleteFunc" text="Remover Funcionário" />
+      <TextField fx:id="txPesquisa" onKeyReleased="#handlePesquisa" layoutX="604.0" layoutY="89.0" prefHeight="34.0" prefWidth="186.0" promptText="Busca" />
    </children>
 </AnchorPane>
