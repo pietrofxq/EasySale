@@ -90,7 +90,7 @@ public class VendaDialogController {
 	        .message("Quantidade final não pode ser negativa.")
 	        .showError();
     	}
-    	clienteController.persist(cliente);
+    	clienteController.update(cliente);
     	okClicked = true;
     	dialogStage.close();
     }

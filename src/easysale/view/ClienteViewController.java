@@ -2,6 +2,7 @@ package easysale.view;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
 
 import org.hibernate.SessionFactory;
 
@@ -99,7 +100,7 @@ public class ClienteViewController {
 	}
 	
 	public void addClientes() {
-		Set<Cliente> clientes = clienteController.findAll();
+		List<Cliente> clientes = clienteController.findAll();
 		listaClientes.clear();
 		listaClientes.addAll(clientes);
 	}

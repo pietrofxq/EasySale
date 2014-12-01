@@ -7,6 +7,7 @@ import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Projections;
 
 import easysale.model.*;
 import easysale.util.EasyUtil;
@@ -27,6 +28,27 @@ public class ClienteController {
 			session.saveOrUpdate(cliente);
 			System.out.println("ID do cliente:" + cliente.getId());
 			System.out.println("Cliente " + cliente.getNome() + " inserido/alterado no bd");
+/*			System.out.println("Compras do cliente:");
+			for (Compra compra : cliente.getCompras()) {
+				System.out.println(compra.getNomeProduto());
+			}*/
+			session.getTransaction().commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void update(Cliente cliente) {
+		try {
+			Session session = sessionFactory.getCurrentSession();
+			session.beginTransaction();
+			session.update(cliente);
+			System.out.println("ID do cliente:" + cliente.getId());
+			System.out.println("Cliente " + cliente.getNome() + " atualizado no bd");
+/*			System.out.println("Compras do cliente:");
+			for (Compra compra : cliente.getCompras()) {
+				System.out.println(compra.getNomeProduto());
+			}*/
 			session.getTransaction().commit();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -34,10 +56,12 @@ public class ClienteController {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public Set<Cliente> findAll() {
+	public List<Cliente> findAll() {
 		Session session = sessionFactory.getCurrentSession();
 		session.beginTransaction();
-		Set<Cliente> clientes = (Set<Cliente>) session.createCriteria(Cliente.class).setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
+		List<Cliente> clientes = session.createCriteria(Cliente.class)
+				.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY)
+				.list();
 		session.getTransaction().commit();
 		return clientes;
 		/*try {
@@ -73,6 +97,7 @@ public class ClienteController {
 				session.getTransaction().commit();
 				return cliente;
 			} else {
+				session.getTransaction().commit();
 				return null;
 			}
 			
