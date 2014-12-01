@@ -1,6 +1,9 @@
 package easysale.controller;
 
 import java.util.List;
+import java.util.Set;
+
+import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -30,14 +33,21 @@ public class ClienteController {
 		}
 	}
 	
-	public List<Cliente> findAll() {
-		try {
+	@SuppressWarnings("unchecked")
+	public Set<Cliente> findAll() {
+		Session session = sessionFactory.getCurrentSession();
+		session.beginTransaction();
+		Set<Cliente> clientes = (Set<Cliente>) session.createCriteria(Cliente.class).setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
+		session.getTransaction().commit();
+		return clientes;
+		/*try {
 			Session session = sessionFactory.getCurrentSession();
 			session.beginTransaction();
 			
 			List<Cliente> clientes = EasyUtil.castList(Cliente.class, session.createQuery("from Cliente").list());
 			for (Cliente cliente : clientes) {
-				System.out.println(cliente);
+				System.out.println(cliente.getNome());
+				System.out.println(cliente.getCompras());
 			}
 			session.getTransaction().commit();
 			
@@ -47,7 +57,7 @@ public class ClienteController {
 			e.printStackTrace();
 			
 			return null;
-		}
+		}*/
 	}
 	
 	public Cliente findByCpf(String cpf) {

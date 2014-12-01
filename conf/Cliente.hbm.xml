@@ -7,11 +7,10 @@
 		</id>
 		<property name="nome" column="NOME" type="string"/>
 		<property name="cpf" column="CPF" type="string"/>
-		<list name="compras" cascade="all" lazy="true" inverse="false">
+		<set name="compras" cascade="all" inverse="true" lazy="true" fetch="select">
 			<key column="CLIENTE_ID" not-null="true"/>
-			<list-index column="COMPRAS_INDEX"/>
 			<one-to-many class="Compra"/>
-		</list>
+		</set>
 	</class>
 	
 	<class name="Compra" table="COMPRAS_LIST">

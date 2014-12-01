@@ -232,13 +232,11 @@ public class MainApp extends Application {
 		try {
 			
 			Configuration config = new Configuration().configure();
-			// Build a Registry with our configuration properties
 			ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings(
 				config.getProperties()).build();
-			// create the session factory
 			sessionFactory = config.buildSessionFactory(serviceRegistry);
 			sessionFactory.openSession();
-			System.out.println("Session factory configured");
+			System.out.println("Session factory configurada");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

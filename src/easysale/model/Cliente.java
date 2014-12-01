@@ -9,7 +9,7 @@ public class Cliente {
 	private IntegerProperty id = new SimpleIntegerProperty();
 	private StringProperty nome = new SimpleStringProperty();
 	private StringProperty cpf = new SimpleStringProperty();
-	private List<Compra> compras = new ArrayList<>();
+	private Set<Compra> compras = new HashSet<>();
 	
 	public Cliente() {
 		
@@ -52,7 +52,7 @@ public class Cliente {
 		return cpf;
 	}
 	
-	public List<Compra> getCompras() {
+	public Set<Compra> getCompras() {
 		return compras;
 	}
 	

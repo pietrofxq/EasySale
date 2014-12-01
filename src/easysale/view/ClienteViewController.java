@@ -92,13 +92,14 @@ public class ClienteViewController {
 		if (cliente != null) {
 			listaCompras.clear();
 			listaCompras.addAll(cliente.getCompras());
+			System.out.println("Compras:");
 			System.out.println(cliente.getCompras());
 		}
 		
 	}
 	
 	public void addClientes() {
-		List<Cliente> clientes = clienteController.findAll();
+		Set<Cliente> clientes = clienteController.findAll();
 		listaClientes.clear();
 		listaClientes.addAll(clientes);
 	}
