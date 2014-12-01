@@ -1,5 +1,7 @@
 package easysale.view;
 
+import org.hibernate.SessionFactory;
+
 import easysale.model.Funcionario;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -22,7 +24,7 @@ public class FuncionarioDialogController {
 	@FXML
 	private Text txTitle;
 
-	FuncionarioDialogController() {
+	public FuncionarioDialogController() {
 		
 	}
 	@FXML
@@ -67,6 +69,7 @@ public class FuncionarioDialogController {
     	okClicked = false;
     	dialogStage.close();
     }
+
     
     
 }

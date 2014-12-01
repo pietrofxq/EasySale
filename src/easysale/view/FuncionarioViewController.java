@@ -76,7 +76,24 @@ public class FuncionarioViewController {
 		if(okClicked) {
 			funcionarioController.insertFuncionario(func);
 		}
+		this.addFunc();
 	}
+	@FXML
+	private void handleEditFunc() {
+		Funcionario func = tableFunc.getSelectionModel().getSelectedItem();
+		boolean okClicked = mainApp.showNewFuncDialog(func, "Editar Funcionário");
+		if(okClicked) {
+			funcionarioController.insertFuncionario(func);
+		}
+		this.addFunc();
+	}
+	@FXML
+	private void handleDeleteFunc() {
+		Funcionario func = tableFunc.getSelectionModel().getSelectedItem();
+		funcionarioController.deleteFuncionario(func);
+		this.addFunc();
+	}
+	
 	@FXML
 	private void handlePesquisa() {
 		if (!txPesquisa.getText().equals("")) {
@@ -110,8 +127,9 @@ public class FuncionarioViewController {
 	public SessionFactory getSessionFactory() {
 		return sessionFactory;
 	}
-	public void setSessionFactory(SessionFactory sessionFactory) {
-		this.sessionFactory = sessionFactory;
+	public void setSessionFactory(SessionFactory session) {
+		this.sessionFactory = session;
+		this.funcionarioController = new FuncionarioController(sessionFactory);
 	}
 
 }

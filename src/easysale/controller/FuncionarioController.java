@@ -10,6 +10,10 @@ import easysale.model.Funcionario;
 public class FuncionarioController {
 	private SessionFactory sessionFactory;
 	
+	public FuncionarioController(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	}
+	
 	public void insertFuncionario(Funcionario func) {
 		
 		try {
@@ -42,7 +46,7 @@ public class FuncionarioController {
 		try {
 			Session session = sessionFactory.getCurrentSession();
 			session.beginTransaction();
-			List<Funcionario> funcionarios = session.createQuery("from funcionarios").list();
+			List<Funcionario> funcionarios = session.createQuery("from Funcionario").list();
 			session.getTransaction().commit();
 			return funcionarios;
 			

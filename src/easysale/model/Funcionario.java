@@ -40,7 +40,7 @@ public class Funcionario {
 		return cargo.get();
 	}
 	public void setCargo(String value) {
-		this.cargo.setValue(value);
+		this.cargo.set(value);
 	}
 	public StringProperty cargoProperty() {
 		return cargo;
@@ -50,7 +50,7 @@ public class Funcionario {
 		return id.get();
 	}
 	public void setId(int value) {
-		this.setId(value);
+		this.id.set(value);
 	}
 	public IntegerProperty idProperty() {
 		return id;
@@ -60,7 +60,7 @@ public class Funcionario {
 		return cpf.get();
 	}
 	public void setCpf(int value) {
-		this.setId(value);
+		this.cpf.set(value);
 	}
 	public IntegerProperty cpfProperty() {
 		return cpf;

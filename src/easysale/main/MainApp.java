@@ -57,8 +57,6 @@ public class MainApp extends Application {
 		        .showWorkerProgress(service);
 		
 		service.start();
-		
-		
 	}
 	
 
@@ -200,33 +198,6 @@ public class MainApp extends Application {
 		}
 	}
 	
-	public boolean showVendaDialog(Produto produto) {
-		try {
-			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(MainApp.class.getResource("../view/VendaDialog.fxml"));
-			AnchorPane page = (AnchorPane) loader.load();
-			
-			Stage dialogStage = new Stage();
-			dialogStage.setTitle("Vender Produto");
-	        dialogStage.initModality(Modality.WINDOW_MODAL);
-	        dialogStage.initOwner(primaryStage);
-	        Scene scene = new Scene(page);
-	        dialogStage.setScene(scene);
-	        
-	        VendaDialogController controller = loader.getController();
-	        controller.setDialogStage(dialogStage);
-	        controller.setSessionFactory(sessionFactory);
-	        controller.setProduto(produto);
-	        dialogStage.showAndWait();
-	        
-	        return controller.isOkClicked();
-	        
-		} catch (IOException | IllegalStateException e) {
-			e.printStackTrace();
-			return false;
-		}
-	}
-	
 	public void showFunc() {
 		try {
 			FXMLLoader loader = new FXMLLoader();
@@ -251,18 +222,45 @@ public class MainApp extends Application {
 			AnchorPane page = (AnchorPane) loader.load();
 			
 			Stage dialogStage = new Stage();
-			dialogStage.setTitle("Adicionar");
-			dialogStage.initModality(Modality.WINDOW_MODAL);
-			Scene scene = new Scene(page);
-			dialogStage.setScene(scene);
+			dialogStage.setTitle("Adicionar Funcionário");
+	        dialogStage.initModality(Modality.WINDOW_MODAL);
+	        dialogStage.initOwner(primaryStage);
+	        Scene scene = new Scene(page);
+	        dialogStage.setScene(scene);
+	        
+	        FuncionarioDialogController controller = loader.getController();
+	        controller.setDialogStage(dialogStage);
+	        controller.setFuncionario(func);
+	        dialogStage.showAndWait();
+	        
+	        return controller.isOkClicked();
+	        
 			
-			FuncionarioDialogController controller = loader.getController();
-			controller.setDialogStage(dialogStage);
-			controller.setFuncionario(func);
-			controller.setTitle(title);
-			dialogStage.showAndWait();
+		} catch(IOException e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+	public boolean showEditFuncDialog(Funcionario func, String title) {
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(MainApp.class.getResource("../view/AddFuncionarioDialog.fxml"));
+			AnchorPane page = (AnchorPane) loader.load();
 			
-			return controller.isOkClicked();
+			Stage dialogStage = new Stage();
+			dialogStage.setTitle("Editar Funcionário");
+	        dialogStage.initModality(Modality.WINDOW_MODAL);
+	        dialogStage.initOwner(primaryStage);
+	        Scene scene = new Scene(page);
+	        dialogStage.setScene(scene);
+	        
+	        FuncionarioDialogController controller = loader.getController();
+	        controller.setDialogStage(dialogStage);
+	        controller.setFuncionario(func);
+	        dialogStage.showAndWait();
+	        
+	        return controller.isOkClicked();
+	        
 			
 		} catch(IOException e) {
 			e.printStackTrace();

@@ -25,7 +25,6 @@
 		<property name="hibernate.show_sql">true</property>
 		<property name="hbm2ddl.auto">update</property>
 		<mapping resource="Produto.hbm.xml" />
-		
 		<mapping resource="Cliente.hbm.xml" />
 		<mapping resource="Funcionario.hbm.xml" />
 
