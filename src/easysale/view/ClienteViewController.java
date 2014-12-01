@@ -1,6 +1,7 @@
 package easysale.view;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -92,9 +93,15 @@ public class ClienteViewController {
 	public void showHistoricoCliente(Cliente cliente) {
 		if (cliente != null) {
 			listaCompras.clear();
-			listaCompras.addAll(cliente.getCompras());
-			System.out.println("Compras:");
-			System.out.println(cliente.getCompras());
+			HashSet<Compra> hash = new HashSet<>();
+			List<Compra> compras = cliente.getCompras();
+			hash.addAll(compras);
+			compras.clear();
+			for (Compra compra : hash) {
+				if (compra != null) {
+					listaCompras.add(compra);
+				}
+			}
 		}
 		
 	}

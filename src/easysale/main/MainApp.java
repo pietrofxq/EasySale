@@ -258,6 +258,7 @@ public class MainApp extends Application {
 	        VendaDialogController controller = loader.getController();
 	        controller.setDialogStage(dialogStage);
 	        controller.setProduto(produto);
+	        controller.setSessionFactory(sessionFactory);
 	        dialogStage.showAndWait();
 	        
 	        return controller.isOkClicked();

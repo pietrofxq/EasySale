@@ -24,30 +24,30 @@ public class LoginController {
 	}
 	@FXML
 	private void handleLogin() {
-		/*String usuario = txLogin.getText();
+		String usuario = txLogin.getText();
 		String senha = txSenha.getText();
 		System.out.println("Usuario:" + usuario);
-		System.out.println("Senha:" + senha);*/
+		System.out.println("Senha:" + senha);
 		
 		try {
-			/*Session session = sessionFactory.getCurrentSession();
+			Session session = sessionFactory.getCurrentSession();
 			session.beginTransaction();
 			String select = "select count(*) from Funcionario func where func.nome= :usuario and func.pass= :pass";
 			Query query = session.createQuery(select);
 			query.setString("usuario", usuario);
 			query.setString("pass", senha);
 			long count = (long)query.uniqueResult();
-			session.getTransaction().commit();*/
-			//if(count == 1) {
-				//System.out.println("Autenticado com Sucesso!");
+			session.getTransaction().commit();
+			if(count == 1) {
+				System.out.println("Autenticado com Sucesso!");
 				mainApp.showHome();
-			/*} else {
+			} else {
 				Dialogs.create()
 		        .title("Erro")
 		        .masthead(null)
 		        .message("Usuário ou senha inválidos!")
 		        .showError();
-			}*/
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

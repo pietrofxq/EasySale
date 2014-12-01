@@ -135,7 +135,7 @@ public class HomeController {
 		boolean okClicked = mainApp.showVendaDialog(produto);
 		
 		if (okClicked) {
-			
+			produtoController.persist(produto);
 		}
 	}
 	
